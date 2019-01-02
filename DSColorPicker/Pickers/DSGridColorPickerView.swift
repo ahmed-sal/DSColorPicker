@@ -56,6 +56,10 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
     private var selectedWedge: WedgeLayer = WedgeLayer(color: UIColor.black.cgColor, radius: 0) {
         didSet {
             selectedColor = UIColor(cgColor: selectedWedge.color)
+            if selectedWedge != oldValue {
+                animateWedgeRadius(wedge: oldValue, to: oldValue.radius / wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
+                animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius * wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
+            }
         }
     }
     
@@ -304,7 +308,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
         if let wedge = layer.hitTest(layer.convert(p, to: layer.superlayer)) as? WedgeLayer {
             isTouchingAWedge = true
             restoredLastWedgeTouched = false
-            animateWedgeRadius(wedge: wedge, to: wedge.radius * wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
             selectedWedge = wedge
         }
     }
@@ -325,7 +328,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
                 // wedge -> different wedge
                 if selectedWedge != wedge {
                     animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius / wedgeScaleRadiusFactor, duration: wedgeScaleDownRadiusDuration)
-                    animateWedgeRadius(wedge: wedge, to: wedge.radius * wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
                     selectedWedge = wedge
                 }
                 // wedge -> same wedge
@@ -337,7 +339,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
             else {
                 isTouchingAWedge = true
                 restoredLastWedgeTouched = false
-                animateWedgeRadius(wedge: wedge, to: wedge.radius * wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
                 selectedWedge = wedge
             }
         }
@@ -357,7 +358,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
 
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isTouchingAWedge {
-            animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius / wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
             restoredLastWedgeTouched = true
             isTouchingAWedge = false
         }
