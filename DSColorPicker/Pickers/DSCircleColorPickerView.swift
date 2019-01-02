@@ -17,7 +17,7 @@ public final class DSCircleColorPickerView: UIView, DSCircleColorPickerViewType 
     private let wedgeScaleUpRadiusDuration: CFTimeInterval          = 0.1
     private let wedgeScaleDownRadiusDuration: CFTimeInterval        = 0.1
     private let reloadPickerAnimationDuration: CFTimeInterval       = 0.5
-    private let reloadPickerAnimationTimingFunctionName: String     = kCAMediaTimingFunctionEaseInEaseOut
+    private let reloadPickerAnimationTimingFunctionName: String     = CAMediaTimingFunctionName.easeInEaseOut.rawValue
     private let wedgeScaleRadiusFactor: CGFloat                     = 1.1
     private let circlePadding: CGFloat                              = 10
     
@@ -214,9 +214,9 @@ public final class DSCircleColorPickerView: UIView, DSCircleColorPickerViewType 
                 endAngleAnim.toValue = end
                 colorAnim.toValue = color
                 
-                startAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
-                endAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
-                colorAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
+                startAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
+                endAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
+                colorAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
                 
                 if animated {
                     wedges[i].color = color
@@ -265,8 +265,8 @@ public final class DSCircleColorPickerView: UIView, DSCircleColorPickerViewType 
                         startAngleAnim.toValue = CGFloat.pi * 2
                         endAngleAnim.toValue = CGFloat.pi * 2
                         
-                        startAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
-                        endAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
+                        startAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
+                        endAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
                         
                         wedge.add(group, forKey: nil)
                     }
@@ -290,9 +290,9 @@ public final class DSCircleColorPickerView: UIView, DSCircleColorPickerViewType 
                         endAngleAnim.toValue = end
                         colorAnim.toValue = color
                         
-                        startAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
-                        endAngleAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
-                        colorAnim.timingFunction = CAMediaTimingFunction(name: self.reloadPickerAnimationTimingFunctionName)
+                        startAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
+                        endAngleAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
+                        colorAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: self.reloadPickerAnimationTimingFunctionName))
                         
                         wedges[i].add(group, forKey: nil)
                     }

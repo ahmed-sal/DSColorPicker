@@ -37,7 +37,7 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
     private let wedgeScaleUpRadiusDuration: CFTimeInterval                  = 0.1
     private let wedgeScaleDownRadiusDuration: CFTimeInterval                = 0.1
     private let reloadPickerAnimationDuration: CFTimeInterval               = 0.5
-    private let reloadPickerAnimationTimingFunctionName: String             = kCAMediaTimingFunctionEaseInEaseOut
+    private let reloadPickerAnimationTimingFunctionName: String             = CAMediaTimingFunctionName.easeInEaseOut.rawValue
     
     private var restoredLastWedgeTouched: Bool = true
     private var isTouchingAWedge: Bool = false
@@ -188,7 +188,7 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
                 scaleY.toValue = 1.0
                 group.animations = [scaleX, scaleY]
                 group.duration = reloadPickerAnimationDuration
-                group.timingFunction = CAMediaTimingFunction(name: reloadPickerAnimationTimingFunctionName)
+                group.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: reloadPickerAnimationTimingFunctionName))
                 circle.add(group, forKey: nil)
                 
                 circles.append(circle)
@@ -214,7 +214,7 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
                 scaleY.toValue = 0.0
                 group.animations = [scaleX, scaleY]
                 group.duration = reloadPickerAnimationDuration
-                group.timingFunction = CAMediaTimingFunction(name: reloadPickerAnimationTimingFunctionName)
+                group.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: reloadPickerAnimationTimingFunctionName))
                 circle.add(group, forKey: nil)
                 CATransaction.commit()
                 
@@ -241,7 +241,7 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
             
             groupAnim.duration = reloadPickerAnimationDuration
             groupAnim.animations = [colorAnim, positionAnim, radiusAnim]
-            groupAnim.timingFunction = CAMediaTimingFunction(name: reloadPickerAnimationTimingFunctionName)
+            groupAnim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: reloadPickerAnimationTimingFunctionName))
             
             circle.add(groupAnim, forKey: nil)
             // Don't need to configure the circles properties because layoutSublayers gets called

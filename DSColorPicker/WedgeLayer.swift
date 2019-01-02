@@ -126,21 +126,21 @@ final class WedgeLayer: CALayer {
     override func action(forKey event: String) -> CAAction? {
         if event == #keyPath(startAngle) {
             let anim = CABasicAnimation(keyPath: event)
-            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             anim.fromValue = startAngle
             return anim
         }
         
         if event == #keyPath(endAngle) {
             let anim = CABasicAnimation(keyPath: event)
-            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             anim.fromValue = endAngle
             return anim
         }
         
         if event == #keyPath(radius) {
             let anim = CABasicAnimation(keyPath: event)
-            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             anim.fromValue = radius
             return anim
         }
