@@ -327,7 +327,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
             if isTouchingAWedge {
                 // wedge -> different wedge
                 if selectedWedge != wedge {
-                    animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius / wedgeScaleRadiusFactor, duration: wedgeScaleDownRadiusDuration)
                     selectedWedge = wedge
                 }
                 // wedge -> same wedge
@@ -345,7 +344,6 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
         else {
             // wedge -> no wedge
             if !restoredLastWedgeTouched {
-                animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius / wedgeScaleRadiusFactor, duration: wedgeScaleDownRadiusDuration)
                 restoredLastWedgeTouched = true
                 isTouchingAWedge = false
             }
