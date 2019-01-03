@@ -41,6 +41,7 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
     
     private var restoredLastWedgeTouched: Bool = true
     private var isTouchingAWedge: Bool = false
+    private var checkmark = CheckMarkView()
     
     weak public var dataSource: DSGridColorPickerViewDataSource?
     weak public var delegate: DSColorPickerViewDelegate?
@@ -58,7 +59,9 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
             selectedColor = UIColor(cgColor: selectedWedge.color)
             if selectedWedge != oldValue {
                 animateWedgeRadius(wedge: oldValue, to: oldValue.radius / wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
+
                 animateWedgeRadius(wedge: selectedWedge, to: selectedWedge.radius * wedgeScaleRadiusFactor, duration: wedgeScaleUpRadiusDuration)
+                moveCheckMark(to: selectedWedge)
             }
         }
     }
@@ -87,6 +90,8 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
             self.layer.addSublayer(circle)
         }
         CATransaction.setDisableActions(false)
+
+        prepareCheckMark()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -94,6 +99,16 @@ public final class DSGridColorPickerView: UIView, DSGridColorPickerViewType {
     }
     
     // MARK: - Layout
+
+    private func prepareCheckMark() {
+        addSubview(checkmark)
+        checkmark.isHidden = true
+    }
+
+    private func moveCheckMark(to wedge: WedgeLayer) {
+        checkmark.center = wedge.contentsCenter.center
+        checkmark.isHidden = false
+    }
     
     // Returns the appropriate properties of the wedge layer for a given index
     private func propertiesForCircle(withIndex idx: Int, insideRect rect: CGRect, andTotalNumberOfCircles numberOfCircles: Int) -> CircleProperties {
